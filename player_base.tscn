@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://rufe3dxgr148"]
+
+[ext_resource type="Script" path="res://player_base.gd" id="1_5a6da"]
+[ext_resource type="Texture2D" uid="uid://dhos21jaktkwt" path="res://art/castle_age1.png" id="2_5t6hy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7evgn"]
+size = Vector2(157.5, 128)
+
+[node name="Base" type="CharacterBody2D"]
+position = Vector2(0, -1)
+scale = Vector2(2, 2)
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_5a6da")
+
+[node name="Area2D_BASE" type="Area2D" parent="." groups=["bases"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_BASE"]
+shape = SubResource("RectangleShape2D_7evgn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.319, 0.292)
+texture = ExtResource("2_5t6hy")
+
+[node name="Health" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Health"]
+layout_mode = 0
+offset_left = -99.5
+offset_top = -120.0
+offset_right = -60.5
+offset_bottom = -97.0
+scale = Vector2(0.5, 0.5)
+text = "2000"
+
+[node name="hpbar" type="ColorRect" parent="Health"]
+layout_mode = 0
+offset_left = -83.5
+offset_top = 64.0
+offset_right = -56.5
+offset_bottom = 405.0
+rotation = 3.14159
+scale = Vector2(0.5, 0.5)
+
+[node name="hp" type="ColorRect" parent="Health"]
+layout_mode = 0
+offset_left = -83.5
+offset_top = 64.0
+offset_right = -56.5
+offset_bottom = 405.0
+rotation = 3.14159
+scale = Vector2(0.5, 0.5)
+color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7evgn")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(99.5, 32)

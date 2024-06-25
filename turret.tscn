@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://bj1u1nbcxmj66"]
+
+[ext_resource type="Script" path="res://Node2D.gd" id="1_kxltx"]
+[ext_resource type="Texture2D" uid="uid://dib2hp1k8fnt5" path="res://art/bases/ballista_spritesheet.png" id="2_supwf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgvaw"]
+atlas = ExtResource("2_supwf")
+region = Rect2(0, 1024, 1600, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6ur0"]
+atlas = ExtResource("2_supwf")
+region = Rect2(0, 0, 1600, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r1u11"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgvaw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6ur0")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0auen"]
+size = Vector2(2277.33, 470.667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnd8o"]
+size = Vector2(126.667, 126.667)
+
+[node name="Turret" type="StaticBody2D"]
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_kxltx")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.16, 0.16)
+sprite_frames = SubResource("SpriteFrames_r1u11")
+animation = &"shoot"
+frame_progress = 0.703705
+
+[node name="Turret_attack_range_area2D" type="Area2D" parent="."]
+
+[node name="Turret_attack_range_CollShape" type="CollisionShape2D" parent="Turret_attack_range_area2D"]
+position = Vector2(1074.67, 171.333)
+shape = SubResource("RectangleShape2D_0auen")
+
+[node name="Attack_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.17891e-06, -3.17891e-06)
+shape = SubResource("RectangleShape2D_lnd8o")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(126.667, 0)
+
+[connection signal="area_entered" from="Turret_attack_range_area2D" to="." method="_on_turret_attack_range_area_2d_area_entered"]
+[connection signal="area_exited" from="Turret_attack_range_area2D" to="." method="_on_turret_attack_range_area_2d_area_exited"]
+[connection signal="timeout" from="Attack_timer" to="." method="_on_attack_timer_timeout"]

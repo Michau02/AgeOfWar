@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://drt27023wxom8"]
+
+[ext_resource type="Script" path="res://Player1.gd" id="1_rx3yc"]
+
+[node name="Player1" type="Node"]
+script = ExtResource("1_rx3yc")
+
+[node name="GoldTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Unit1_timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="Unit3_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="GoldTimer" to="." method="_on_gold_timer_timeout"]
+[connection signal="timeout" from="Unit1_timer" to="." method="_on_unit_1_timer_timeout"]
+[connection signal="timeout" from="Unit3_timer" to="." method="_on_unit_3_timer_timeout"]

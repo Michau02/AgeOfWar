@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://d006rk70eni3x"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_qhdg4"]
+[ext_resource type="Texture2D" uid="uid://y0j4vr1jkjfy" path="res://art/background.jpg" id="2_dsxch"]
+[ext_resource type="PackedScene" uid="uid://2cdjnto52cqv" path="res://camera_2d.tscn" id="2_kp14k"]
+[ext_resource type="PackedScene" uid="uid://drt27023wxom8" path="res://player_1.tscn" id="4_08xrt"]
+[ext_resource type="PackedScene" uid="uid://civiel5s3gn43" path="res://player_2.tscn" id="5_p4a35"]
+[ext_resource type="AudioStream" uid="uid://bvgnc7qwcomgg" path="res://sound/main_theme.wav" id="6_uympx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0j5h8"]
+size = Vector2(2117, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1lx72"]
+size = Vector2(47, 508)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_qhdg4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -12.0
+offset_top = 2.0
+offset_right = 2105.0
+offset_bottom = 720.0
+texture = ExtResource("2_dsxch")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 555.0
+offset_right = 2087.0
+offset_bottom = 650.0
+expand_mode = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TextureRect"]
+position = Vector2(-7, 24)
+collision_layer = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TextureRect/StaticBody2D"]
+position = Vector2(1066.5, 579)
+shape = SubResource("RectangleShape2D_0j5h8")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="TextureRect/StaticBody2D" groups=["ground"]]
+position = Vector2(1059.17, 579.019)
+rotation = 3.14159
+scale = Vector2(2103.5, -90.3136)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TextureRect/StaticBody2D"]
+position = Vector2(-15.5, 368)
+shape = SubResource("RectangleShape2D_1lx72")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="TextureRect/StaticBody2D"]
+position = Vector2(2147, 367)
+shape = SubResource("RectangleShape2D_1lx72")
+
+[node name="Player1" parent="." instance=ExtResource("4_08xrt")]
+
+[node name="Player2" parent="." instance=ExtResource("5_p4a35")]
+
+[node name="Camera2D" parent="." instance=ExtResource("2_kp14k")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_uympx")
+
+[connection signal="updateGoldP1" from="Player1" to="Camera2D" method="_on_player_1_update_gold_p_1"]
+[connection signal="updateGoldP2" from="Player2" to="Camera2D" method="_on_player_2_update_gold_p_2"]

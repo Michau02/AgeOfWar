@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuxgyogi7r3wp"]
+
+[ext_resource type="FontFile" uid="uid://dr71nbkfo7fov" path="res://fonts/Xolonium-Regular.ttf" id="1_7r4rl"]
+[ext_resource type="Script" path="res://game_over.gd" id="1_tjs7o"]
+[ext_resource type="AudioStream" uid="uid://dyv0uqgxsq6hr" path="res://sound/fanfares.wav" id="2_8mo1k"]
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_tjs7o")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1230.0
+offset_bottom = 686.0
+color = Color(0.607843, 0.403922, 1, 1)
+
+[node name="Game_Over_label" type="Label" parent="."]
+offset_left = 329.0
+offset_top = 175.0
+offset_right = 818.0
+offset_bottom = 296.0
+theme_override_colors/font_color = Color(0.407843, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 1, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("1_7r4rl")
+theme_override_font_sizes/font_size = 72
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Who_Won_label" type="Label" parent="."]
+offset_left = 388.0
+offset_top = 325.0
+offset_right = 759.0
+offset_bottom = 364.0
+theme_override_fonts/font = ExtResource("1_7r4rl")
+theme_override_font_sizes/font_size = 32
+text = "The winner is: Player 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Go_To_Menu_btn" type="Button" parent="."]
+offset_left = 490.0
+offset_top = 500.0
+offset_right = 658.0
+offset_bottom = 530.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_7r4rl")
+theme_override_font_sizes/font_size = 18
+text = "Go back to menu"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_8mo1k")
+volume_db = -15.375
+
+[connection signal="pressed" from="Go_To_Menu_btn" to="." method="_on_go_to_menu_btn_pressed"]

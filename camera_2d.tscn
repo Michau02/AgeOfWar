@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://2cdjnto52cqv"]
+
+[ext_resource type="Script" path="res://Camera2D.gd" id="1_5hjau"]
+[ext_resource type="PackedScene" uid="uid://cdvn8tkionn7c" path="res://hud.tscn" id="2_ni3he"]
+
+[node name="Camera2D" type="Camera2D"]
+position = Vector2(576, 324)
+script = ExtResource("1_5hjau")
+
+[node name="HUD" parent="." instance=ExtResource("2_ni3he")]
