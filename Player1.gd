@@ -25,7 +25,7 @@ var turret
 var base_scene
 
 func _ready():
-	gold = 117
+	gold = 200
 	exp = 0
 	age = 1
 	if !queue.is_empty():
@@ -96,6 +96,7 @@ func spawn_unit(type):
 				
 func build_turret():
 	if turret == null and gold >= turret_cost[age-1]:
+		gold -= turret_cost[age-1]
 		emit_signal("add_gold", 1, -turret_cost[age-1], 0)
 		turret = preload("res://turret.tscn").instantiate()
 		turret.position = base_scene.marker_position + base_scene.position
